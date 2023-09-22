@@ -12,9 +12,20 @@ Company Data Requirements
 7.	Employees can work with clients controlled by their branch to sell them stuff. If necessary, multiple employees can work with the same client. We’ll want to keep track of how many dollars’ worth of stuff each employee sells to each client they work with.
 8.	Many branches will need to work with suppliers to but inventory. For each supplier we’ll keep track of their name and the type of product they’re selling the branch. A single supplier may supply products to multiple branches.
 
+With the above information, I designed an ER Diagram as follows:
+
+![image](https://github.com/rmakhoebe/Database_Design/assets/97227644/c86028d3-6df8-404f-ac77-21e615b8e52b)
+
+The following steps were taken to convert the above ER Diagram into a database schema:
+
+Step 1: Mapping of Regular Entity Types – For each regular entity type create a relation (table) that includes all the simple attributes of that entity. [Employee table, Branch Table & Client table with their associated attributes]
+Step 2: Mapping of weak Entity Types – For each weak entity type, create a relation (table) that includes all simple attributes of the weak entity. The primary key of the new relation should be the partial key of the weak entity plus the primary key of its owner. [Branch Supplier table with composite primary key of branch_id and supplier_name. Supplier_type is the attribute].
+Step 3: Mapping of Binary 1:1 Relationship Types (a binary relationship is a relationship that has two entities participating in it) – Include one side of the relationship as a foreign key in the other and we favor total participation. If both of them are partial participation or both are total participation, we use discretion. [In Branch table, we add mngr_id as foreign key.]
+Step 4: Mapping of binary 1: N Relationship Types – Include the 1 side’s primary key as a foreign key on the N side relation (table) [In client table, branch_id is a foreign key. In Employee table, branch_id is a foreign key. In Employee table, super_id is a foreign key]
+Step 5: Mapping of Binary M:N Relationship Types – Create a new relation (table) whose primary key is a combination of both entities’ primary keys. Also include any relationship attributes. [Create Works_With table with composite key as Client_id and Emp_id and has Sales as an attribute. Second relation is Supplies/ Branch_supplier table with composite key as branch_id and supplier_name. Attribute is supply_type]
 
 
-Understanding the Tables:
+Creating the Tables:
 1.	The Employee Table below shows a record of all the employee demographics of Paper Emporium employees. In the first column we have a unique employeeID (Emp_id), second column we have the employee’s first name, last name, their birth_date, gender, salary, supervisorID (super_id), and the branch in which each employee works (Branch_id). Highlighted in blue is the PRIMARY KEY of the table and highlighted in green is the FOREIGN KEY of the table, meaning it points us to the PRIMARY KEY of another table.  
 N.B: An employee in the company has a supervisor, who is also another employee of Paper Emporium. For example, Josh Porter, employee 106, has a supervisor with emp_id 100, who is David Wallace.
 
@@ -88,6 +99,9 @@ We continue to insert all the other values normally into the employee table unti
 ![image](https://github.com/rmakhoebe/Database_Design/assets/97227644/bd632778-7910-46b1-b7a6-201ae30b345c)
 
 The process to populate every other value correctly is as previously demonstrated for the rest of the entries.
+
+These are the resulting tables in the database
+![image](https://github.com/rmakhoebe/Database_Design/assets/97227644/941e27af-6010-458a-abcf-c5fa7627e3e3)
 
 
 
