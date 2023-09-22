@@ -19,9 +19,13 @@ With the above information, I designed an ER Diagram as follows:
 The following steps were taken to convert the above ER Diagram into a database schema:
 
 Step 1: Mapping of Regular Entity Types – For each regular entity type create a relation (table) that includes all the simple attributes of that entity. [Employee table, Branch Table & Client table with their associated attributes]
+
 Step 2: Mapping of weak Entity Types – For each weak entity type, create a relation (table) that includes all simple attributes of the weak entity. The primary key of the new relation should be the partial key of the weak entity plus the primary key of its owner. [Branch Supplier table with composite primary key of branch_id and supplier_name. Supplier_type is the attribute].
+
 Step 3: Mapping of Binary 1:1 Relationship Types (a binary relationship is a relationship that has two entities participating in it) – Include one side of the relationship as a foreign key in the other and we favor total participation. If both of them are partial participation or both are total participation, we use discretion. [In Branch table, we add mngr_id as foreign key.]
+
 Step 4: Mapping of binary 1: N Relationship Types – Include the 1 side’s primary key as a foreign key on the N side relation (table) [In client table, branch_id is a foreign key. In Employee table, branch_id is a foreign key. In Employee table, super_id is a foreign key]
+
 Step 5: Mapping of Binary M:N Relationship Types – Create a new relation (table) whose primary key is a combination of both entities’ primary keys. Also include any relationship attributes. [Create Works_With table with composite key as Client_id and Emp_id and has Sales as an attribute. Second relation is Supplies/ Branch_supplier table with composite key as branch_id and supplier_name. Attribute is supply_type]
 
 
@@ -101,6 +105,7 @@ We continue to insert all the other values normally into the employee table unti
 The process to populate every other value correctly is as previously demonstrated for the rest of the entries.
 
 These are the resulting tables in the database
+
 ![image](https://github.com/rmakhoebe/Database_Design/assets/97227644/941e27af-6010-458a-abcf-c5fa7627e3e3)
 
 
